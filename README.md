@@ -1,4 +1,4 @@
-<h1>ABSTRACT</h1>
+<h1 align="center">ABSTRACT</h1>
 
 <h2>INTRODUCTION</h2>
 
