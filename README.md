@@ -10,7 +10,6 @@ Tic-Tac-Toe is a game that involves placing two symbols X’s and O’s in a 3 x
 grid to form a horizontal, vertical or a diagonal row with the same symbol. This
 game improves the logical and strategic thinking abilities.
 
-----------------------------------------------------------------------------------------------------------------------------------------
 
 <h2>PROBLEM STATEMENT:</h2>
 
@@ -18,7 +17,6 @@ The game Tic-Tac-Toe is implemented through a visual interface where the player
 can play against another player or the computer and this eliminates the need of
 a pen and a paper.
 
-----------------------------------------------------------------------------------------------------------------------------------------
 
 <h2>PROCEDURE:</h2>
 
@@ -28,7 +26,6 @@ wishes to start first or the computer to start first if it is a single player
 game. The player must enter the position in which he wants to place his symbol
 and the computer makes the next move until the match ends.
 
-----------------------------------------------------------------------------------------------------------------------------------------
 
 <h2>RESULTS:</h2>
 
@@ -36,7 +33,6 @@ A player can either play a single player game against the computer or a
 multi-player with another player. It is more interactive and fun than using a
 pen and paper.
 
-----------------------------------------------------------------------------------------------------------------------------------------
 
 <h2>CONCLUSION:</h2>
 
