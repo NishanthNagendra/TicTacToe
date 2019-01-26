@@ -48,16 +48,17 @@ void playgame(char layout[4][4], int choice) {
   showlayout(layout, 0);
   if (choice == 1) {
     int input;
+    char symbolpos[4][4] = {" "};
     cout << "Enter position : ";
     cin >> input;
     for (int i = 1; i < 4; i++) {
       for (int j = 0; j < 4; j++) {
         if (layout[i][j] == input + '0') {
-          layout[i][j] = 'X';
+          symbolpos[i][j] = 'X';
         }
       }
     }
-    showlayout(layout, 0);
+    showlayout(symbolpos, 0);
   } else {
   }
 }
