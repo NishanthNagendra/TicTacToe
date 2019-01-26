@@ -3,6 +3,40 @@
 #include <windows.h>
 using namespace std;
 
+bool row(char layout[4][4]) {
+  for (int i = 1; i < 4; i++) {
+    if (layout[i][1] != " " && layout[i][1] == layout[i][2] &&
+        layout[i][2] == layout[i][3]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool column(char layout[4][4]) {
+  for (int i = 1; i < 4; i++) {
+    if (layout[1][i] != " " && layout[1][i] == layout[2][i] &&
+        layout[2][i] == layout[3][i]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool diagonal(char layout[4][4]) {
+  if (layout[1][1] != " " && layout[1][1] == layout[2][2] &&
+      layout[2][2] == layout[3][3]) {
+    return true;
+  } else if (layout[1][3] != " " && layout[1][3] == layout[2][2] &&
+             layout[2][2] == layout[3][1]) {
+    return true;
+  }
+  return false;
+}
+
+bool win(char layout[4][4]) {
+  return (row(layout) || column(layout) || diagonal(layout));
+}
 // Function to show the board layout
 void showlayout(char layout[4][4], int temp) {
   system("CLS");
