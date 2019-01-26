@@ -81,18 +81,28 @@ void playgame(char layout[4][4], int choice) {
   system("CLS");
   showlayout(layout, 0);
   if (choice == 1) {
-    int input;
+    int input, player = 1, compmoves[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     char symbolpos[4][4] = {" "};
-    cout << "Enter position : ";
-    cin >> input;
-    for (int i = 1; i < 4; i++) {
-      for (int j = 0; j < 4; j++) {
-        if (layout[i][j] == input + '0') {
-          symbolpos[i][j] = 'X';
+    while (!win) {
+      cout << "Enter position : ";
+      cin >> input;
+    repeat:
+      for (int i = 1; i < 4; i++) {
+        for (int j = 1; j < 4; j++) {
+          if (player == 1) {
+            if (layout[i][j] == input + '0') {
+              symbolpos[i][j] = 'X';
+              player--;
+            }
+          } else if (player == 0) {
+
+            player++;
+            goto repeat;
+          }
         }
+        showlayout(symbolpos, 0);
       }
     }
-    showlayout(symbolpos, 0);
   } else {
   }
 }
