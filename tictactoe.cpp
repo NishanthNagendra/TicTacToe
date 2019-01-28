@@ -59,9 +59,33 @@ bool win(char layout[][4]) {
   return (row(layout) || column(layout) || diagonal(layout));
 }
 // Function to show the board layout
-void showlayout(char layout[][4], int temp) {
+void showlayout(char layout[][4], int temp, int p1sym, int p2sym, int comp) {
   system("CLS");
-  cout << "The board layout : \n";
+  char symp1, symp2;
+  if (temp) {
+    cout << "The board layout\n";
+  }
+  if (comp) {
+    if (p1sym == 1) {
+      symp1 = 'X';
+      symp2 = 'O';
+    } else {
+      symp1 = 'O';
+      symp2 = 'X';
+    }
+    cout << "Player : " << symp1;
+    cout << "\nComputer : " << symp2 << endl;
+  } else {
+    if (p1sym == 1) {
+      symp1 = 'X';
+      symp2 = 'O';
+    } else {
+      symp1 = 'O';
+      symp2 = 'X';
+    }
+    cout << "Player 1 : " << symp1;
+    cout << "\nPlayer 2 : " << symp2 << endl;
+  }
   cout << "     |     |     "
        << "\n";
   cout << "  " << layout[1][1] << "  |  " << layout[1][2] << "  |  "
@@ -93,13 +117,20 @@ void showlayout(char layout[][4], int temp) {
   }
 }
 
-void playgame(char layout[][4], int choice) {
+void playgame(char layout[][4], int choice, int p1sym, int p2sym) {
   system("CLS");
   int input, player = 1, compmoves[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9}, moves = 0,
              movenos = 9;
-  char symbolpos[4][4] = {NULL};
+  char symbolpos[4][4] = {NULL}, symbolplayerone, symbolplayertwo;
+  if (p1sym == 1) {
+    symbolplayerone = 'X';
+    symbolplayertwo = 'O';
+  } else {
+    symbolplayerone = 'O';
+    symbolplayertwo = 'X';
+  }
   if (choice == 1) {
-    showlayout(symbolpos, 0);
+    showlayout(symbolpos, 0, p1sym, p2sym, 1);
     while (!win(symbolpos) && moves != 9) {
       if (player == 1) {
       a:
@@ -109,12 +140,12 @@ void playgame(char layout[][4], int choice) {
           for (int j = 1; j < 4; j++) {
             if (layout[i][j] == input + '0') {
               if (symbolpos[i][j] == NULL) {
-                symbolpos[i][j] = 'X';
+                symbolpos[i][j] = symbolplayerone;
                 player--;
                 removemove(compmoves, movenos, input);
                 movenos--;
                 moves++;
-                showlayout(symbolpos, 0);
+                showlayout(symbolpos, 0, p1sym, p2sym, 1);
               } else {
                 goto a;
               }
@@ -128,12 +159,12 @@ void playgame(char layout[][4], int choice) {
           for (int j = 1; j < 4; j++) {
             if (layout[i][j] == input + '0') {
               if (symbolpos[i][j] == NULL) {
-                symbolpos[i][j] = 'O';
+                symbolpos[i][j] = symbolplayertwo;
                 player++;
                 removemove(compmoves, movenos, input);
                 movenos--;
                 moves++;
-                showlayout(symbolpos, 0);
+                showlayout(symbolpos, 0, p1sym, p2sym, 1);
               } else {
                 goto b;
               }
@@ -146,13 +177,13 @@ void playgame(char layout[][4], int choice) {
       cout << "It's a draw";
     } else {
       if (player == 0) {
-        cout << "Player Wins";
+        cout << "You Win!!!";
       } else {
-        cout << "Computer Wins";
+        cout << "Computer Wins!!!";
       }
     }
   } else {
-    showlayout(symbolpos, 0);
+    showlayout(symbolpos, 0, p1sym, p2sym, 0);
     while (!win(symbolpos) && moves != 9) {
       if (player == 1) {
       a1:
@@ -166,7 +197,7 @@ void playgame(char layout[][4], int choice) {
                 symbolpos[i][j] = 'X';
                 player--;
                 moves++;
-                showlayout(symbolpos, 0);
+                showlayout(symbolpos, 0, p1sym, p2sym, 0);
               } else {
                 goto a1;
               }
@@ -185,7 +216,7 @@ void playgame(char layout[][4], int choice) {
                 symbolpos[i][j] = 'O';
                 player++;
                 moves++;
-                showlayout(symbolpos, 0);
+                showlayout(symbolpos, 0, p1sym, p2sym, 0);
               } else {
                 goto b1;
               }
@@ -195,19 +226,19 @@ void playgame(char layout[][4], int choice) {
       }
     }
     if (!win(symbolpos) && moves == 9) {
-      cout << "It's a draw";
+      cout << "It's a draw!!!";
     } else {
       if (player == 0) {
-        cout << "Player 1 Wins";
+        cout << "Player 1 Wins!!!";
       } else {
-        cout << "Player 2 Wins";
+        cout << "Player 2 Wins!!!";
       }
     }
   }
 }
 
 // Function to initialize positions on the board
-void initialize(int choice) {
+void initialize(int choice, int p1sym, int p2sym, int comp) {
   char layout[4][4];
   int c = 1, i, j;
 
@@ -219,8 +250,8 @@ void initialize(int choice) {
       cout << layout[i][j] << "\n";
     }
   }
-  showlayout(layout, 1);
-  playgame(layout, choice);
+  showlayout(layout, 1, p1sym, p2sym, comp);
+  playgame(layout, choice, p1sym, p2sym);
 }
 
 int main() {
@@ -238,11 +269,11 @@ inp:
     switch (p1sym) {
     case 1:
       cout << "You have chosen X";
-      // initialize(choice, p1sym, p2sym);
+      initialize(choice, p1sym, p2sym, 1);
       break;
     case 2:
       cout << "You have chosen O";
-      // initialize(choice, p1sym, p2sym);
+      initialize(choice, p1sym, p2sym, 1);
       break;
     default:
       cout << "Choose a valid option";
@@ -252,7 +283,7 @@ inp:
     }
     break;
   case 2:
-    initialize(choice);
+    initialize(choice, p1sym, p2sym, 0);
     break;
   default:
     cout << "Enter a valid choice";
