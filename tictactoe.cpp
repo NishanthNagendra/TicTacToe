@@ -4,6 +4,7 @@
 #include <windows.h>
 using namespace std;
 
+// Deletes moves that are already performed
 void removemove(int compmoves[], int movenos, int element) {
   int pos;
   for (int j = 0; j < movenos; j++) {
@@ -18,12 +19,14 @@ void removemove(int compmoves[], int movenos, int element) {
   }
 }
 
+// The computer selects a random move from the remaining moves
 int computermove(int compmoves[], int movenos) {
   srand((unsigned int)(time(NULL)));
   int move = rand() % movenos;
   return compmoves[move];
 }
 
+// Checks for winning condition of the rows
 bool row(char layout[][4]) {
   for (int i = 1; i < 4; i++) {
     if (layout[i][1] == layout[i][2] && layout[i][2] == layout[i][3] &&
@@ -34,6 +37,7 @@ bool row(char layout[][4]) {
   return false;
 }
 
+// Checks for winning condition of the columns
 bool column(char layout[][4]) {
   for (int i = 1; i < 4; i++) {
     if (layout[1][i] != NULL && layout[1][i] == layout[2][i] &&
@@ -44,6 +48,7 @@ bool column(char layout[][4]) {
   return false;
 }
 
+// Checks for winning condition of the diagonal
 bool diagonal(char layout[][4]) {
   if (layout[1][1] != NULL && layout[1][1] == layout[2][2] &&
       layout[2][2] == layout[3][3]) {
@@ -55,9 +60,11 @@ bool diagonal(char layout[][4]) {
   return false;
 }
 
+// Checks for all conditions and tells whether any player has won
 bool win(char layout[][4]) {
   return (row(layout) || column(layout) || diagonal(layout));
 }
+
 // Function to show the board layout
 void showlayout(char layout[][4], int temp, int psym, int comp) {
   system("CLS");
@@ -138,6 +145,7 @@ void showlayout(char layout[][4], int temp, int psym, int comp) {
   }
 }
 
+// Function that controls the gameplay
 void playgame(char layout[][4], int choice, int psym, int player) {
   system("CLS");
   int input, compmoves[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9}, moves = 0,
@@ -266,7 +274,7 @@ void playgame(char layout[][4], int choice, int psym, int player) {
   }
 }
 
-// Function to initialize positions on the board
+// Function to initialize positions on the board and to start the game
 void initialize(int choice, int psym, int comp, int player) {
   char layout[4][4];
   int c = 1, i, j;
@@ -284,6 +292,7 @@ void initialize(int choice, int psym, int comp, int player) {
 }
 
 int main() {
+  // Main function handles the player modes and initializes the game
   int choice, psym = 0, player = 2;
   char ch, ch1;
 inp:
