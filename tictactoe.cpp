@@ -347,7 +347,7 @@ inp:
     break;
   case 2:
     srand((unsigned int)(time(NULL)));
-    psym = rand() % 2;
+    psym = (rand() % (2)) + 1;
     player = rand() % 2;
     cout << psym;
     initialize(choice, psym, 0, player);
