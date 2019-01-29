@@ -1,5 +1,3 @@
-<h1 align="center">ABSTRACT</h1>
-
 <h2>INTRODUCTION</h2>
 
 <p>The advent of technology has made an impact on every aspect of human life. Games
@@ -23,14 +21,3 @@ multi-player game then must select the symbol he wishes to use and whether he
 wishes to start first or the computer to start first if it is a single player
 game. The player must enter the position in which he wants to place his symbol
 and the computer makes the next move until the match ends.</p>
-
-<h2>RESULTS</h2>
-
-<p>A player can either play a single player game against the computer or a
-multi-player with another player. It is more interactive and fun than using a
-pen and paper.</p>
-
-<h2>CONCLUSION</h2>
-
-<p>A Tic-Tac-Toe game is designed using C++ and it replaces the pen and paper
-version of it.</p>
