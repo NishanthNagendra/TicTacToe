@@ -154,7 +154,7 @@ void playgame(char layout[][4], int choice, int psym, int player) {
   if (psym == 1) {
     symbolplayerone = 'X';
     symbolplayertwo = 'O';
-  } else {
+  } else if (psym == 2) {
     symbolplayerone = 'O';
     symbolplayertwo = 'X';
   }
@@ -349,7 +349,6 @@ inp:
     srand((unsigned int)(time(NULL)));
     psym = (rand() % (2)) + 1;
     player = rand() % 2;
-    cout << psym;
     initialize(choice, psym, 0, player);
     break;
   default:
