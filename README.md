@@ -21,3 +21,5 @@ multi-player game then must select the symbol he wishes to use and whether he
 wishes to start first or the computer to start first if it is a single player
 game. The player must enter the position in which he wants to place his symbol
 and the computer makes the next move until the match ends.</p>
+
+
